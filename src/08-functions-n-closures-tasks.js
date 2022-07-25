@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* *********************************************************************************************
  *                                                                                             *
  * Please read the following tutorial before implementing tasks:                                *
@@ -62,8 +63,12 @@ function getPowerFunction(exponent) {
  *   getPolynom(8)     => y = 8
  *   getPolynom()      => null
  */
-function getPolynom() {
-  throw new Error('Not implemented');
+function getPolynom(...args) {
+  return (x) => {
+    const arr = [...args];
+    const res = arr.reverse().map((value, index) => value * (x ** index));
+    return res.reverse().reduce((acc, item) => acc + item, 0);
+  };
 }
 
 
@@ -179,7 +184,14 @@ function partialUsingArguments(fn, ...args1) {
  *   getId10() => 11
  */
 function* getIdGeneratorFunction(startFrom) {
-  yield () => startFrom;
+  yield* () => {
+    let index = startFrom;
+    while (true) {
+      // eslint-disable-next-line no-plusplus
+      ++index;
+      return index;
+    }
+  };
 }
 
 
